@@ -86,22 +86,22 @@ export default function Navbar() {
           <img
             src="/logo.png"
             alt="Payroll Marketing"
-            className="h-9 w-9 object-contain"
+            className="h-section w-section object-contain"
             width={36}
             height={36}
           />
-          <span className="leading-none">
+        {/*  <span className="leading-none">
             <span className="block font-display text-[16px] font-bold tracking-tight text-paper uppercase">
               Payroll Marketing
             </span>
             <span className="hidden text-[9.5px] tracking-[0.08em] text-paper/55 sm:block">
               Scientific, Laboratory &amp; Industrial Solutions
             </span>
-          </span>
+          </span>*/}
         </Link>
 
         <nav
-          className="hidden flex-1 items-center justify-center gap-3.5 lg:flex"
+          className="hidden flex-1 items-center flex-wrap justify-center gap-3.5 lg:flex"
           onMouseLeave={() => setMega(null)}
         >
           {NAV.map((item) => (

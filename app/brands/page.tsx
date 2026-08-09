@@ -1,8 +1,11 @@
+import BrandsPage from '@/components/brands'
 import React from 'react'
 
 function page() {
   return (
-    <div>page</div>
+    <main>
+      <BrandsPage/>
+    </main>
   )
 }
 

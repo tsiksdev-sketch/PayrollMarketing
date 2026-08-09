@@ -1,8 +1,11 @@
 import React from 'react'
+import ResourcesPage from '@/components/resources'
 
 function page() {
   return (
-    <div>page</div>
+    <main>
+    <ResourcesPage/>
+    </main>
   )
 }
 
