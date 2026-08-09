@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { APP_NAME, APP_DESCRIPTION,APP_SLOGAN } from "@/lib/constants";
 import { Roboto } from "next/font/google";
+import { RfqProvider } from "@/lib/rqt";
 
 
 const roboto =Roboto({
@@ -39,9 +40,10 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body>
-     
-     {children}
-
+     <RfqProvider>
+      {children}
+     </RfqProvider>
+    
       </body>
     </html>
   );

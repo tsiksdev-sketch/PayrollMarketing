@@ -1,73 +1,142 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
-import { Phone, Mail, MapPin } from "lucide-react";
-import Image from "next/image";
+import { CONTACT } from "@/data/catalog";
+
+export function CtaBand() {
+  return (
+    <section className="bg-midnight py-16 text-paper">
+      <div className="container-pm flex flex-col justify-between gap-8 md:flex-row md:items-center">
+        <div className="max-w-2xl">
+          <span className="kicker">Ready to move</span>
+          <h2 className="mt-4 text-paper">Send the specification. We will identify the sourcing route.</h2>
+          <p className="mt-4 text-paper/70">Submit one item, a full schedule or a complete project brief.</p>
+        </div>
+        <div className="flex flex-col gap-3">
+          <Link href="/request-a-quote" className="btn-pm btn-gold">
+            Request a quote <ArrowRight size={16} />
+          </Link>
+          <a
+            href={`https://wa.me/${CONTACT.whatsapp}`}
+            target="_blank"
+            rel="noreferrer"
+            className="btn-pm btn-ghost-pm text-paper"
+          >
+            WhatsApp the requirement <ArrowRight size={16} />
+          </a>
+          <Link href="/special-sourcing" className="btn-pm btn-ghost-pm text-paper">
+            Special sourcing <ArrowRight size={16} />
+          </Link>
+        </div>
+
+      </div>
+    </section>
+  );
+}
 
 export default function Foot() {
   return (
-    <footer className="bg-primary text-primary-foreground pt-20 pb-8">
-      <div className="container-x grid gap-12 lg:grid-cols-12">
-        <div className="lg:col-span-4">
-          <Image src="/moreloved-logo.png" height={100} width={100} alt="MoreLoved Care" className="h-20 w-30 w-auto mb-5 brightness-0 invert opacity-90" />
-          <p className="text-sm opacity-80 leading-relaxed max-w-sm">
-            MoreLoved Care Ltd provides assessed home care and Personal care in Nottingham
-            and agreed areas of Nottinghamshire compassionate relationships, person-centred
-            planning, staff competence and visible accountability. From Us to You.
+    <footer className="surface-dark">
+      <div className="container-pm grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+        <div>
+          <img src='/logo.png' alt="Payroll Marketing" className="h-12 w-12 object-contain" width={48} height={48} loading="lazy" />
+          <p className="mt-5 max-w-xs text-[15px] text-paper/65">
+            Specification-led supply for daily laboratory requirements, specialist equipment and complete project
+            procurement.
           </p>
-          <div className="mt-6 space-y-2 text-sm opacity-90">
-            <a href="tel:01156812514" className="flex items-center gap-2 hover:opacity-100"><Phone className="w-4 h-4" /> 0115 681 2514</a>
-            <a href="mailto:admin@morelovedcare.co.uk" className="flex items-center gap-2 hover:opacity-100"><Mail className="w-4 h-4" /> admin@morelovedcare.co.uk</a>
-            <p className="flex items-start gap-2"><MapPin className="w-4 h-4 mt-0.5" /> Sovereign House, 184 Nottingham Road, Nottingham, NG7 7BA</p>
+          <div className="mt-5 flex gap-6 text-[14px] font-semibold text-burgundy">
+            <Link href="/request-a-quote" className="hover:text-gold">
+              Request a quote →
+            </Link>
+            <Link href="/special-sourcing" className="hover:text-gold">
+              Special sourcing →
+            </Link>
           </div>
         </div>
 
-        <div className="lg:col-span-2">
-          <h4 className="text-sm font-semibold mb-4 tracking-widest uppercase opacity-70">Care</h4>
-          <ul className="space-y-2 text-sm opacity-90">
-            <li><a href="/care-and-support/personal-care" className="hover:opacity-100">Personal care</a></li>
-            <li><a href="/care-and-support/support-for-older-people" className="hover:opacity-100">Older people</a></li>
-            <li><a href="/care-and-support/dementia-care" className="hover:opacity-100">Dementia support</a></li>
-            <li><a href="/care-and-support/physical-disability-support" className="hover:opacity-100">Disability support</a></li>
-            <li><a href="/care-and-support/children-and-young-people" className="hover:opacity-100">Children & young people</a></li>
-          </ul>
-        </div>
+        <FooterCol
+          title="Discover"
+          links={[
+            { to: "/products", label: "Products" },
+            { to: "/industries", label: "Industries" },
+            { to: "/capex", label: "CAPEX & Projects" },
+            { to: "/resources", label: "Resources" },
+            { to: "/laboratory-setup", label: "Laboratory Setup" },
+            { to: "/about", label: "About" },
+          ]}
+        />
+        <FooterCol
+          title="Work with us"
+          links={[
+            { to: "/request-a-quote", label: "Request a Quote" },
+            { to: "/special-sourcing", label: "Special Sourcing" },
+            { to: "/supplier-registration", label: "Supplier Registration" },
+            { to: "/brands", label: "Supply Network" },
+            { to: "/contact", label: "Contact" },
+          ]}
+        />
 
-        <div className="lg:col-span-2">
-          <h4 className="text-sm font-semibold mb-4 tracking-widest uppercase opacity-70">Company</h4>
-          <ul className="space-y-2 text-sm opacity-90">
-            <li><a href="/about" className="hover:opacity-100">About us</a></li>
-            <li><a href="/quality-and-safety" className="hover:opacity-100">Quality</a></li>
-            <li><a href="/careers" className="hover:opacity-100">Careers</a></li>
-            <li><a href="/advice-and-resources" className="hover:opacity-100">Advice hub</a></li>
-            <li><a href="/contact" className="hover:opacity-100">Contact</a></li>
-          </ul>
-        </div>
-
-        <div className="lg:col-span-4">
-          <h4 className="text-sm font-semibold mb-4 tracking-widest uppercase opacity-70">Regulated care</h4>
-          <div className="rounded-2xl border border-primary-foreground/20 p-5 bg-primary-foreground/5">
-            <p className="text-sm opacity-90 leading-relaxed">
-              <strong className="font-semibold">CQC overall rating: Good</strong><br />
-              Registered activity: Personal care<br />
-              Provider ID: 1-9848800802<br />
-              Location ID: 1-14157488363
-            </p>
-            <a href="#cqc" className="mt-3 inline-flex items-center gap-1.5 text-sm underline underline-offset-4 hover:no-underline">
-              View official CQC profile →
+        <div>
+          <h4 className="text-[15px] text-paper">Contact</h4>
+          <address className="mt-5 space-y-1 text-[15px] not-italic text-paper/65">
+            {CONTACT.address.map((line) => (
+              <div key={line}>{line}</div>
+            ))}
+          </address>
+          <div className="mt-4 space-y-1 text-[15px] text-paper/65">
+            <div>{CONTACT.phone}</div>
+            <div>{CONTACT.phoneAlt}</div>
+            <div>{CONTACT.mobile}</div>
+            <a href={`mailto:${CONTACT.email}`} className="hover:text-gold">
+              {CONTACT.email}
             </a>
           </div>
+          <a
+            href={`https://wa.me/${CONTACT.whatsapp}`}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-4 inline-flex items-center gap-2 text-[14px] font-semibold text-gold hover:text-paper"
+          >
+            WhatsApp the requirement →
+          </a>
         </div>
       </div>
 
-      <div className="container-x mt-12 pt-6 border-t border-primary-foreground/15 flex flex-col md:flex-row gap-4 justify-between text-xs opacity-70">
-        <p>© 2026 MoreLoved Care Ltd. Company no. 12932401. All rights reserved.</p>
-        <div className="flex flex-wrap gap-x-5 gap-y-2">
-          <a href="/privacy-notice" className="hover:opacity-100">Privacy</a>
-       
-          <a href="/accessibility-statement" className="hover:opacity-100">Accessibility</a>
-          <a href="/terms-of-use" className="hover:opacity-100">Terms</a>
-          <a href="/sitemap" className="hover:opacity-100">Sitemap</a>
+      <div className="border-t border-white/10">
+        <div className="container-pm flex flex-col gap-2 py-5 text-[12px] text-paper/45 md:flex-row md:items-center md:justify-between">
+          <span>© {new Date().getFullYear()} Payroll Marketing (Private) Limited.</span>
+          <div className="flex flex-wrap gap-5">
+            <Link href="/privacy" className="hover:text-gold">
+              Privacy Notice
+            </Link>
+            <Link href="/cookie-notice" className="hover:text-gold">
+              Cookie Notice
+            </Link>
+            <Link href="/terms" className="hover:text-gold">
+              Website Terms
+            </Link>
+          </div>
+          <span>Products shown are representative. Availability is confirmed at quotation stage.</span>
         </div>
       </div>
     </footer>
+  );
+}
+
+
+function FooterCol({ title, links }: { title: string; links: { to: string; label: string }[] }) {
+  return (
+    <div>
+      <h4 className="text-[15px] text-paper">{title}</h4>
+      <ul className="mt-5 space-y-3 text-[15px] text-paper/65">
+        {links.map((l, i) => (
+          <li key={i}>
+            <Link href={l.to} className="hover:text-gold">
+              {l.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
