@@ -1,8 +1,11 @@
+import LabSetupPage from '@/components/lab'
 import React from 'react'
 
 function page() {
   return (
-    <div>page</div>
+    <main>
+      <LabSetupPage/>
+    </main>
   )
 }
 

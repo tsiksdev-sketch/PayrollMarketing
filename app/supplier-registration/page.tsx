@@ -1,8 +1,11 @@
+import SupplierRegistrationPage from '@/components/supplier'
 import React from 'react'
 
 function page() {
   return (
-    <div>page</div>
+    <main>
+      <SupplierRegistrationPage/>
+    </main>
   )
 }
 

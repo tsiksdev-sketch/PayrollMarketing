@@ -1,8 +1,11 @@
+import SpecialSourcingPage from '@/components/sourcing'
 import React from 'react'
 
 function page() {
   return (
-    <div>page</div>
+  <main>
+    <SpecialSourcingPage/>
+  </main>
   )
 }
 

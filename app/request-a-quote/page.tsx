@@ -1,8 +1,11 @@
+import QuotePage from '@/components/request'
 import React from 'react'
 
 function page() {
   return (
-    <div>page</div>
+    <main>
+      <QuotePage/>
+    </main>
   )
 }
 
