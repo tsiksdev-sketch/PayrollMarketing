@@ -11,8 +11,8 @@ import { useRfq } from "@/lib/rqt";
 const NAV = [
   { to: "/products", label: "Products", mega: "products" as const },
   { to: "/industries", label: "Industries", mega: "industries" as const },
-  { to: "/capex", label: "CAPEX & Projects" },
-  { to: "/brands", label: "Brands & Supply Network" },
+  { to: "/capex", label: "CAPEX " },
+  { to: "/brands", label: "Brands " },
   { to: "/special-sourcing", label: "Special Sourcing" },
   { to: "/resources", label: "Resources" },
   { to: "/laboratory-setup", label: "Laboratory Setup" },

@@ -109,9 +109,7 @@ export default function Foot() {
             <Link href="/privacy" className="hover:text-gold">
               Privacy Notice
             </Link>
-            <Link href="/cookie-notice" className="hover:text-gold">
-              Cookie Notice
-            </Link>
+           
             <Link href="/terms" className="hover:text-gold">
               Website Terms
             </Link>

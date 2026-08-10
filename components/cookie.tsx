@@ -86,7 +86,7 @@ const CookieConsent = () => {
                   We value your privacy
                 </h2>
                 <p id="cookie-desc" className="mt-1 text-sm text-muted-foreground">
-                  MoreLovedCare uses cookies to keep the site running, understand how it
+                  PayrollMarketing uses cookies to keep the site running, understand how it
                   is used and improve your experience. See our{" "}
                   <Link href="/privacy" className="text-primary underline-offset-4 hover:underline">
                     Privacy Policy

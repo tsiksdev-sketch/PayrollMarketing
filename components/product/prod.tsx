@@ -1,46 +1,33 @@
+"use client"
+
+
 import Link from "next/link";
+
+import { useMemo, useState } from "react";
 import { ArrowRight, Search, Upload } from "lucide-react";
 import { PageHero } from "../PageHero";
 import { CtaBand } from "../shared/footer/Foot";
 import { ProductCard } from "../ProductCard";
 import { PRODUCTS, PRODUCT_CATEGORIES } from "@/data/catalog";
 
-const ROUTES = [
-  "All supply routes",
-  "Routine supply",
-  "Routine / specialist sourcing",
-  "Specialist sourcing",
-  "CAPEX / specialist sourcing",
-  "Project / specialist sourcing",
-];
+const ROUTES = ["All supply routes", "Routine supply", "Routine / specialist sourcing", "Specialist sourcing", "CAPEX / specialist sourcing", "Project / specialist sourcing"];
 
-type Props = {
-  searchParams?: {
-    q?: string;
-    family?: string;
-    route?: string;
-  };
-};
+export default function ProductsPage() {
+  const [query, setQuery] = useState("");
+  const [family, setFamily] = useState("all");
+  const [route, setRoute] = useState(ROUTES[0]);
 
-export default function ProductsPage({ searchParams }: Props) {
-  const query = (searchParams?.q ?? "").toString();
-  const family = (searchParams?.family ?? "all").toString();
-  const route = (searchParams?.route ?? ROUTES[0]).toString();
-
-  const results = PRODUCTS.filter((p) => {
+  const results = useMemo(() => {
     const q = query.trim().toLowerCase();
-    const matchQ =
-      !q ||
-      [p.name, p.id, p.brand, p.family, p.description, ...p.sectors]
-        .join(" ")
-        .toLowerCase()
-        .includes(q);
-
-    const matchF = family === "all" || p.category === family;
-    const matchR = route === ROUTES[0] || p.classification === route;
-
-    return matchQ && matchF && matchR;
-  });
+    return PRODUCTS.filter((p) => {
+      const matchQ =
+        !q ||
+        [p.name, p.id, p.brand, p.family, p.description, ...p.sectors].join(" ").toLowerCase().includes(q);
+      const matchF = family === "all" || p.category === family;
+      const matchR = route === ROUTES[0] || p.classification === route;
+      return matchQ && matchF && matchR;
+    });
+  }, [query, family, route]);
 
   return (
     <>
@@ -63,22 +50,17 @@ export default function ProductsPage({ searchParams }: Props) {
 
       <section className="border-b border-border bg-ivory py-6">
         <div className="container-pm">
-          {/* NOTE: In Next, you typically update query params.
-              If you want it “fully Next way”, use a form + method=get
-              so filters are shareable/bookmarkable. */}
-          <form method="get" className="flex flex-col gap-3 md:flex-row">
+          <div className="flex flex-col gap-3 md:flex-row">
             <label className="flex flex-1 items-center gap-3 border border-input bg-card px-4">
               <Search size={18} className="text-muted-foreground" />
               <span className="sr-only">Search products</span>
-
               <input
-                name="q"
-                defaultValue={query}
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search product, application, model or catalogue number"
                 className="h-12 w-full bg-transparent text-[16px] outline-none"
               />
             </label>
-
             <div className="grid gap-3 sm:grid-cols-2">
               <div>
                 <label className="meta-label block" htmlFor="family">
@@ -86,8 +68,8 @@ export default function ProductsPage({ searchParams }: Props) {
                 </label>
                 <select
                   id="family"
-                  name="family"
-                  defaultValue={family}
+                  value={family}
+                  onChange={(e) => setFamily(e.target.value)}
                   className="mt-1 h-11 w-full border border-input bg-card px-3 text-[14px]"
                 >
                   <option value="all">All families</option>
@@ -98,31 +80,23 @@ export default function ProductsPage({ searchParams }: Props) {
                   ))}
                 </select>
               </div>
-
               <div>
                 <label className="meta-label block" htmlFor="route">
                   Supply route
                 </label>
                 <select
                   id="route"
-                  name="route"
-                  defaultValue={route}
+                  value={route}
+                  onChange={(e) => setRoute(e.target.value)}
                   className="mt-1 h-11 w-full border border-input bg-card px-3 text-[14px]"
                 >
                   {ROUTES.map((r) => (
-                    <option key={r} value={r}>
-                      {r}
-                    </option>
+                    <option key={r}>{r}</option>
                   ))}
                 </select>
               </div>
             </div>
-
-            {/* submit button not shown in your original UI; add a hidden one */}
-            <button type="submit" className="sr-only">
-              Search
-            </button>
-          </form>
+          </div>
         </div>
       </section>
 
@@ -134,27 +108,20 @@ export default function ProductsPage({ searchParams }: Props) {
               {PRODUCT_CATEGORIES.map((c) => (
                 <li key={c.slug}>
                   <Link
-                    href={`/family/${c.slug}`}
+                    
+                      href={`/family/${c.slug}`}
                     className="flex items-center justify-between gap-3 py-3 text-[14px] hover:text-burgundy"
                   >
                     {c.name}
-                    <span className="meta-label">
-                      {PRODUCTS.filter((p) => p.category === c.slug).length}
-                    </span>
+                    <span className="meta-label">{PRODUCTS.filter((p) => p.category === c.slug).length}</span>
                   </Link>
                 </li>
               ))}
             </ul>
-
             <div className="surface-dark mt-8 p-6">
               <h3 className="text-[17px] text-paper">Cannot find the item?</h3>
-              <p className="mt-2 text-[14px] text-paper/65">
-                Upload a label, datasheet or full schedule.
-              </p>
-              <Link
-                href="/special-sourcing"
-                className="mt-4 inline-flex text-[14px] font-semibold text-gold"
-              >
+              <p className="mt-2 text-[14px] text-paper/65">Upload a label, datasheet or full schedule.</p>
+              <Link href="/special-sourcing" className="mt-4 inline-flex text-[14px] font-semibold text-gold">
                 Use special sourcing →
               </Link>
             </div>
@@ -180,7 +147,6 @@ export default function ProductsPage({ searchParams }: Props) {
                   No representative product matched the current search. Send the known reference, existing label,
                   specification or complete RFQ and the team will identify an appropriate sourcing route.
                 </p>
-
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Link href="/special-sourcing" className="btn-pm btn-gold">
                     Start special sourcing <ArrowRight size={16} />

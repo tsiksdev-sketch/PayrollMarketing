@@ -1,12 +1,12 @@
 
 export const IMAGES = {
   lab: '/hero-lab.jpg',
-  mining:'/sector-mining.jpg',
-  water:'/sector-water.jpg',
+  mining:'/a.webp',
+  water:'/b.webp',
   pharma:'/sector-pharma.jpg',
-  food:'/sector-food.jpg',
+  food:'/d.webp',
   academic:'/sector-academic.jpg',
-  industrial:'/sector-industrial.jpg',
+  industrial:'/f.webp',
   capex:'/capex.jpg',
 } as const;
 
@@ -91,15 +91,72 @@ export interface Industry {
 }
 
 export const INDUSTRIES: Industry[] = [
-  { slug: "mining-minerals", name: "Mining & Minerals", headline: "Reliable laboratory supply for faster, defensible mineral decisions.", desc: "From sample preparation and wet chemistry to moisture, balances, electrochemistry and analytical equipment, Payroll Marketing structures supply around the mine laboratory workflow.", image: "mining", tags: ["Sample preparation", "Assay support", "Moisture", "Water quality", "CAPEX"] },
-  { slug: "water-agriculture-environmental", name: "Water, Agriculture & Environmental", headline: "Measurement systems built around the parameter, sample and decision.", desc: "Field and laboratory products for water quality, environmental monitoring, soil, grain and agricultural testing - supported by standards, consumables and documentation.", image: "water", tags: ["pH", "Conductivity", "Filtration", "Grain moisture", "Sampling"] },
-  { slug: "healthcare-pharmaceuticals", name: "Healthcare & Pharmaceuticals", headline: "Controlled supply for diagnostic, production and quality-control environments.", desc: "Laboratory equipment, microbiology, analytical chemistry, consumables and documentation routes configured around method, quality and continuity.", image: "pharma", tags: ["QC laboratories", "Microbiology", "Cold chain", "Sterilisation", "Documentation"] },
-  { slug: "food-beverage", name: "Food & Beverage", headline: "Quality-control supply from raw material to release decision.", desc: "Moisture, pH, viscosity, microbiology, balances, glassware and analytical products aligned to food and beverage quality workflows.", image: "food", tags: ["Moisture", "Viscosity", "pH", "Microbiology", "Sampling"] },
-  { slug: "academic-research-education", name: "Academic, Research & Education", headline: "Laboratories designed for teaching, discovery and repeatable practical work.", desc: "Scalable product and CAPEX pathways for schools, universities and research teams - from routine practicals to specialist analytical systems.", image: "academic", tags: ["School laboratories", "Teaching kits", "Research", "Microscopy", "CAPEX"] },
-  { slug: "industrial-manufacturing", name: "Industrial & Manufacturing", headline: "Specification-led measurement for process and product control.", desc: "Laboratory and process instruments, reagents, physical measurement and recurring consumables for manufacturing quality systems.", image: "industrial", tags: ["Process control", "Physical measurement", "QA/QC", "Water", "Recurring supply"] },
-  { slug: "utilities-infrastructure", name: "Utilities & Infrastructure", headline: "Technical supply for public systems, utilities and infrastructure projects.", desc: "Water-quality, environmental, laboratory and project-procurement support for utilities, municipalities and infrastructure programmes.", image: "water", tags: ["Water treatment", "Monitoring", "Projects", "Documentation"] },
-  { slug: "ngos-public-health-development", name: "NGOs, Public Health & Development", headline: "Procurement-ready laboratory supply for programmes with controlled scope.", desc: "Structured multi-line sourcing, documentation and delivery coordination for public-health, development and donor-funded requirements.", image: "lab", tags: ["Programme procurement", "Public health", "Documentation", "Multi-line RFQs"] },
+  {
+    slug: "mining-minerals",
+    name: "Mining & Minerals",
+    headline: "Reliable laboratory supply for faster, defensible mineral decisions.",
+    desc: "From sample preparation and wet chemistry to moisture, balances, electrochemistry and analytical equipment, Payroll Marketing structures supply around the mine laboratory workflow.",
+    image: "mining",
+    tags: ["Sample preparation", "Assay support", "Moisture", "Water quality", "CAPEX"],
+  },
+  {
+    slug: "water-agriculture-environmental",
+    name: "Water, Agriculture & Environmental",
+    headline: "Measurement systems built around the parameter, sample and decision.",
+    desc: "Field and laboratory products for water quality, environmental monitoring, soil, grain and agricultural testing - supported by standards, consumables and documentation.",
+    image: "water",
+    tags: ["pH", "Conductivity", "Filtration", "Grain moisture", "Sampling"],
+  },
+  {
+    slug: "healthcare-pharmaceuticals",
+    name: "Healthcare & Pharmaceuticals",
+    headline: "Controlled supply for diagnostic, production and quality-control environments.",
+    desc: "Laboratory equipment, microbiology, analytical chemistry, consumables and documentation routes configured around method, quality and continuity.",
+    image: "pharma",
+    tags: ["QC laboratories", "Microbiology", "Cold chain", "Sterilisation", "Documentation"],
+  },
+  {
+    slug: "food-beverage",
+    name: "Food & Beverage",
+    headline: "Quality-control supply from raw material to release decision.",
+    desc: "Moisture, pH, viscosity, microbiology, balances, glassware and analytical products aligned to food and beverage quality workflows.",
+    image: "food",
+    tags: ["Moisture", "Viscosity", "pH", "Microbiology", "Sampling"],
+  },
+  {
+    slug: "academic-research-education",
+    name: "Academic, Research & Education",
+    headline: "Laboratories designed for teaching, discovery and repeatable practical work.",
+    desc: "Scalable product and CAPEX pathways for schools, universities and research teams - from routine practicals to specialist analytical systems.",
+    image: "academic",
+    tags: ["School laboratories", "Teaching kits", "Research", "Microscopy", "CAPEX"],
+  },
+  {
+    slug: "industrial-manufacturing",
+    name: "Industrial & Manufacturing",
+    headline: "Specification-led measurement for process and product control.",
+    desc: "Laboratory and process instruments, reagents, physical measurement and recurring consumables for manufacturing quality systems.",
+    image: "industrial",
+    tags: ["Process control", "Physical measurement", "QA/QC", "Water", "Recurring supply"],
+  },
+  {
+    slug: "utilities-infrastructure",
+    name: "Utilities & Infrastructure",
+    headline: "Technical supply for public systems, utilities and infrastructure projects.",
+    desc: "Water-quality, environmental, laboratory and project-procurement support for utilities, municipalities and infrastructure programmes.",
+    image: "water",
+    tags: ["Water treatment", "Monitoring", "Projects", "Documentation"],
+  },
+  {
+    slug: "ngos-public-health-development",
+    name: "NGOs, Public Health & Development",
+    headline: "Procurement-ready laboratory supply for programmes with controlled scope.",
+    desc: "Structured multi-line sourcing, documentation and delivery coordination for public-health, development and donor-funded requirements.",
+    image: "lab",
+    tags: ["Programme procurement", "Public health", "Documentation", "Multi-line RFQs"],
+  },
 ];
+
 
 export const BRANDS = [
   { name: "Merck Life Science", scope: "Laboratory chemicals, reagents, analytical and life-science product routes", sectors: "Analytical, pharmaceutical, research and quality-control laboratories" },
