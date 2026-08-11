@@ -1,34 +1,35 @@
-
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Check, Upload, Plus } from "lucide-react";
+import { ArrowRight, Check, Upload } from "lucide-react";
 
 import { CtaBand } from "@/components/shared/footer/Foot";
 import { ProductCard } from "@/components/ProductCard";
 import { IMAGES, PRODUCTS, classificationTone, type Product } from "@/data/catalog";
 
-
-export default async function page(props: {
-  params: Promise<{ id: string }>;
-}) {
+export default async function Page(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
-
   const { id } = params;
 
-  const product = PRODUCTS.find((p) => p.id === id);
+  // Normalize to reduce mismatches (case/whitespace)
+  const normalizedId = id.trim();
+
+  // IMPORTANT: your dataset must match this field.
+  // If your objects store id with different casing/format, normalize both sides.
+  const product = PRODUCTS.find((p) => String(p.id).trim() === normalizedId);
+
   if (!product) notFound();
 
   const related = PRODUCTS.filter(
-    (p) => p.id !== product.id && p.category === product.category
+    (p) => p.id !== product?.id && p.category === product?.category
   ).slice(0, 3);
 
   const relatedSafe = related.length ? related : PRODUCTS.slice(0, 3);
 
   const specs: Array<[string, string]> = [
-    ["Payroll reference", product.id],
-    ["Primary applications", product.sectors.join(", ")],
-    ["Brand route", product.brand],
-    ["Configuration", product.pack],
+    ["Payroll reference", product?.id],
+    ["Primary applications", product?.sectors?.join(", ")],
+    ["Brand route", product?.brand],
+    ["Configuration", product?.pack],
     ["Documentation", "SDS, COA, manuals or datasheets where applicable and available"],
     ["Availability", "Confirmed at quotation stage"],
   ];
@@ -42,8 +43,9 @@ export default async function page(props: {
           </Link>
           <span>/</span>
 
+          {/* This must match your family route exactly */}
           <Link
-            href={`/family/${product.category}`}
+            href={`/family/${encodeURIComponent(product.category)}`}
             className="text-burgundy hover:text-gold"
           >
             {product.family}
@@ -90,9 +92,6 @@ export default async function page(props: {
             </dl>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              {/* hook lives in client component */}
-              {/*<ProductRfqButton product={product} />*/}
-
               <Link href="/special-sourcing" className="btn-pm btn-dark">
                 Upload existing label <Upload size={16} />
               </Link>
@@ -137,7 +136,7 @@ export default async function page(props: {
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {relatedSafe.map((p) => (
-              <ProductCard key={p.id} product={p} />
+              <ProductCard key={p.id} product={p as Product} />
             ))}
           </div>
         </div>

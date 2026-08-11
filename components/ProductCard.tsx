@@ -66,7 +66,7 @@ export function ProductCard({ product }: { product: Product }) {
           </button>
 
           <Link
-            href={`/product/${product.id}`}
+            href={`/products/${product.id}`}
             className="flex items-center gap-1.5 text-[14px] font-semibold text-burgundy hover:text-gold"
           >
             View details <ArrowRight size={15} />
