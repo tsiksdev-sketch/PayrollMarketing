@@ -142,7 +142,7 @@ export default function Navbar() {
             type="button"
             onClick={() => setRfqOpen(true)}
             aria-label={`RFQ basket, ${count} lines`}
-            className="relative p-2 text-paper/80 hover:text-gold"
+            className="relative hidden p-2 text-paper/80 hover:text-gold"
           >
             <ShoppingBag size={19} />
             <AnimatePresence>

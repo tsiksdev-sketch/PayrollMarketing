@@ -1,49 +1,30 @@
-import React from 'react'
 
-function page() {
-  return (
-    <div>page</div>
-  )
-}
-
-export default page
-
-
-/*import Link from "next/link";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Check, Plus, Upload } from "lucide-react";
+import { ArrowRight, Check, Upload, Plus } from "lucide-react";
+
 import { CtaBand } from "@/components/shared/footer/Foot";
 import { ProductCard } from "@/components/ProductCard";
 import { IMAGES, PRODUCTS, classificationTone, type Product } from "@/data/catalog";
-import { useRfq } from "@/lib/rqt";
 
 
-export const Route = createFileRoute("/product/$id")({
-  loader: ({ params }): { product: Product; related: Product[] } => {
-    const product = PRODUCTS.find((p) => p.id === params.id);
-    if (!product) throw notFound();
-    const related = PRODUCTS.filter((p) => p.id !== product.id && p.category === product.category).slice(0, 3);
-    return { product, related: related.length ? related : PRODUCTS.slice(0, 3) };
-  },
-  head: ({ loaderData }) => ({
-    meta: loaderData
-      ? [
-          { title: `${loaderData.product.name} | Payroll Marketing` },
-          { name: "description", content: loaderData.product.description.slice(0, 155) },
-          { property: "og:title", content: `${loaderData.product.name} | Payroll Marketing` },
-          { property: "og:description", content: loaderData.product.description.slice(0, 155) },
-        ]
-      : [],
-  }),
-  component: ProductPage,
-});
+export default async function page(props: {
+  params: Promise<{ id: string }>;
+}) {
+  const params = await props.params;
 
-function ProductPage() {
-  const { product, related } = Route.useLoaderData() as { product: Product; related: Product[] };
-  const { add } = useRfq();
+  const { id } = params;
 
+  const product = PRODUCTS.find((p) => p.id === id);
+  if (!product) notFound();
 
-  const specs = [
+  const related = PRODUCTS.filter(
+    (p) => p.id !== product.id && p.category === product.category
+  ).slice(0, 3);
+
+  const relatedSafe = related.length ? related : PRODUCTS.slice(0, 3);
+
+  const specs: Array<[string, string]> = [
     ["Payroll reference", product.id],
     ["Primary applications", product.sectors.join(", ")],
     ["Brand route", product.brand],
@@ -60,9 +41,14 @@ function ProductPage() {
             Products
           </Link>
           <span>/</span>
-          <Link href="/family/$slug" params={{ slug: product.category }} className="text-burgundy hover:text-gold">
+
+          <Link
+            href={`/family/${product.category}`}
+            className="text-burgundy hover:text-gold"
+          >
             {product.family}
           </Link>
+
           <span>/</span>
           <span>{product.name}</span>
         </div>
@@ -71,7 +57,11 @@ function ProductPage() {
       <section className="py-14">
         <div className="container-pm grid gap-12 lg:grid-cols-2">
           <div className="img-zoom relative aspect-5/4">
-            <img src={IMAGES[product.image]} alt={product.name} className="h-full w-full object-cover" />
+            <img
+              src={IMAGES[product.image as keyof typeof IMAGES]}
+              alt={product.name}
+              className="h-full w-full object-cover"
+            />
             <span className="tag-pm absolute top-4 left-4 border-none bg-paper text-graphite">
               Representative configuration
             </span>
@@ -83,7 +73,9 @@ function ProductPage() {
             <p className="mt-4 text-muted-foreground">{product.description}</p>
 
             <div className="mt-5 flex flex-wrap gap-2">
-              <span className={`tag-pm ${classificationTone(product.classification)}`}>{product.classification}</span>
+              <span className={`tag-pm ${classificationTone(product.classification)}`}>
+                {product.classification}
+              </span>
               <span className="tag-pm text-labblue">{product.brand}</span>
               <span className="tag-pm text-teal">{product.pack}</span>
             </div>
@@ -98,13 +90,9 @@ function ProductPage() {
             </dl>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <button
-                type="button"
-                onClick={() => add({ id: product.id, name: product.name, family: product.family })}
-                className="btn-pm btn-gold"
-              >
-                Add to RFQ <Plus size={16} />
-              </button>
+              {/* hook lives in client component */}
+              {/*<ProductRfqButton product={product} />*/}
+
               <Link href="/special-sourcing" className="btn-pm btn-dark">
                 Upload existing label <Upload size={16} />
               </Link>
@@ -126,10 +114,12 @@ function ProductPage() {
             <span className="kicker">Applications</span>
             <h2 className="mt-4 text-[32px]">Configured around the operating need</h2>
             <p className="mt-4 text-muted-foreground">
-              Confirm the sample, method, measurement range, capacity, accuracy, material compatibility, utilities and
-              quality requirements. The final quotation should distinguish required features from preferences.
+              Confirm the sample, method, measurement range, capacity, accuracy, material compatibility,
+              utilities and quality requirements. The final quotation should distinguish required features
+              from preferences.
             </p>
           </div>
+
           <ul className="grid gap-px self-start border border-border bg-border sm:grid-cols-2">
             {product.sectors.map((s) => (
               <li key={s} className="flex items-center gap-3 bg-card p-4 text-[15px]">
@@ -144,8 +134,9 @@ function ProductPage() {
         <div className="container-pm">
           <span className="kicker">Related products</span>
           <h2 className="mt-4 max-w-3xl">Build the surrounding product ecosystem</h2>
+
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {related.map((p) => (
+            {relatedSafe.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
           </div>
@@ -155,4 +146,4 @@ function ProductPage() {
       <CtaBand />
     </>
   );
-}*/
+}

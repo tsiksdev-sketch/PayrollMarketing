@@ -52,7 +52,7 @@ export function ProductCard({ product }: { product: Product }) {
               setAdded(true);
               window.setTimeout(() => setAdded(false), 1600);
             }}
-            className="btn-pm btn-dark h-11 min-h-11 text-[11px]"
+            className="btn-pm btn-dark h-11 min-h-11 hidden text-[11px]"
           >
             {added ? (
               <>
